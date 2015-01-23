@@ -1,0 +1,19 @@
+curl -X POST -H "Accept: application/json" -H "Content-Type: application/json" \
+  http://localdocker:8080/v2/apps -d '
+{
+    "id": "/finn/archsummit/example",
+    "cmd": "python -m SimpleHTTPServer",
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "elyase/staticpython",
+            "network": "BRIDGE",
+            "portMappings": [
+                { "containerPort": 8000, "hostPort": 8000, "servicePort": 8000}
+              ]
+        }
+    },
+    "instances": 3,
+    "cpus": 1.5,
+    "mem": 512.0
+}'
